@@ -1,0 +1,43 @@
+service: login-service
+frameworkVersion: "3"
+
+custom:
+  tableName: "user_sessions"
+
+provider:
+  name: aws
+  runtime: python3.8
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:GetItem
+            - dynamodb:DeleteItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+          Resource:
+            - Fn::GetAtt: [user_sessions, Arn]
+        - Effect: Allow
+          Action:
+            - dynamodb:GetItem
+            - dynamodb:DeleteItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+          Resource:
+            - Fn::GetAtt: [user_sessions, Arn]
+  environment:
+    USER_SESSIONS_TABLE: ${self:custom.tableName}
+
+functions:
+  login:
+    handler: handler.login
+    events:
+      - httpApi:
+          path: /
+          method: post
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+  - serverless-python-requirements
