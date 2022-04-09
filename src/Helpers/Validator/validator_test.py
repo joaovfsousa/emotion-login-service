@@ -1,4 +1,4 @@
-from src.validator import Validator
+from src.Helpers.Validator import Validator
 
 
 class TestValidator:
