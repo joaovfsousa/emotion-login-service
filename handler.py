@@ -1,11 +1,14 @@
-import json
 import logging
+import json
+from src.utils.config_log import config_log
 from src.HttpException import HttpException
 from src.Services.Auth import AuthService
 from src.Repositories.User import UserRepository
 
 from src.Helpers.Validator import Validator
 from src.Helpers.Http import HttpHelper
+
+config_log()
 
 
 def login(event, context):
