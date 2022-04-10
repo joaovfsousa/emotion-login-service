@@ -1,4 +1,6 @@
 import secrets
+
+from src.Helpers.Dynamo import DynamoHelper
 from src.HttpException import HttpException
 from src.Repositories.User import UserRepository
 
@@ -20,5 +22,10 @@ class AuthService:
             )
 
         token = secrets.token_hex(16)
+
+        serializedUser = user.serialize()
+
+        dynamoHelper = DynamoHelper()
+        dynamoHelper.put_item("user_sessions", {"token": token, **serializedUser})
 
         return token

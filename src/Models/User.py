@@ -11,3 +11,6 @@ class User:
     def checkPassword(self, password: str) -> bool:
         passwordHash = HashHelper.hash_string(password)
         return passwordHash == self.password
+
+    def serialize(self) -> dict:
+        return {"username": self.username, "name": self.name, "id": self.id}
