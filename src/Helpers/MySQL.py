@@ -13,8 +13,5 @@ class MySQLHelper:
             host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME
         )
 
-    def __del__(self):
-        self._connection.close()
-
     def getCursor(self):
         return self._connection.cursor()

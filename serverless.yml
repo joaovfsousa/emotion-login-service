@@ -4,13 +4,24 @@ frameworkVersion: "3"
 provider:
     name: aws
     runtime: python3.8
+    timeout: 5
     iam:
         role:
             statements:
                 - Effect: Allow
                   Action:
                       - dynamodb:PutItem
-                  Resource: "arn:aws:dynamodb:us-east-1:*:table/user_sessions"
+                  Resource: "arn:aws:dynamodb:*:*:table/user_sessions"
+    vpc:
+        subnetIds:
+            - "subnet-05d565f778463393a"
+            - "subnet-03862d2e1e99c8c94"
+            - "subnet-0e470454df0fae02a"
+            - "subnet-0e5ae706b57d639fb"
+            - "subnet-0e58e70d2164a14c9"
+            - "subnet-0ac9b0a6aa8fb53cf"
+        securityGroupIds:
+            - "sg-00ccaf947bee1944f"
 
 functions:
     login:
