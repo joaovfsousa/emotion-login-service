@@ -7,7 +7,7 @@ DB_USER = os.environ["DB_USER"]
 DB_PASSWORD = os.environ["DB_PASSWORD"]
 
 
-class DbHelper:
+class MySQLHelper:
     def __init__(self):
         self._connection = pymysql.connect(
             host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME

@@ -1,4 +1,4 @@
-from src.Helpers.HashHelper import HashHelper
+from src.Helpers.Hash import HashHelper
 
 
 class User:

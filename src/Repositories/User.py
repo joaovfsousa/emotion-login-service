@@ -1,12 +1,12 @@
 from src.HttpException import HttpException
 from src.Models.User import User
-from src.Helpers.DbHelper import DbHelper
+from src.Helpers.MySQL import MySQLHelper
 import logging
 
 
 class UserRepository:
     def __init__(self):
-        self.dbHelper = DbHelper()
+        self.dbHelper = MySQLHelper()
 
     def getUserByUsername(self, username: str) -> User:
         try:

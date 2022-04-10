@@ -5,7 +5,7 @@ from src.Services.Auth import AuthService
 from src.Repositories.User import UserRepository
 
 from src.Helpers.Validator import Validator
-from src.Helpers.HttpHelper import HttpHelper
+from src.Helpers.Http import HttpHelper
 
 
 def login(event, context):
