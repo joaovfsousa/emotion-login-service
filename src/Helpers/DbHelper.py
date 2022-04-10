@@ -9,12 +9,12 @@ DB_PASSWORD = os.environ["DB_PASSWORD"]
 
 class DbHelper:
     def __init__(self):
-        self.connection = pymysql.connect(
+        self._connection = pymysql.connect(
             host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME
         )
 
     def __del__(self):
-        self.connection.close()
+        self._connection.close()
 
     def getCursor(self):
-        return self.connection.cursor()
+        return self._connection.cursor()
