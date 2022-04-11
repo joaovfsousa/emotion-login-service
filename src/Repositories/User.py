@@ -8,7 +8,7 @@ class UserRepository:
     def __init__(self):
         self.dbHelper = MySQLHelper()
 
-    def getUserByUsername(self, username: str) -> User:
+    def get_user_by_username(self, username: str) -> User:
         try:
             cursor = self.dbHelper.getCursor()
             query = (

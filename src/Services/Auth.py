@@ -10,7 +10,7 @@ class AuthService:
         self.userRepository = userRepository
 
     def authenticate(self, username: str, password: str) -> str:
-        user = self.userRepository.getUserByUsername(username)
+        user = self.userRepository.get_user_by_username(username)
         if user is None:
             raise HttpException("Usuário não encontrado", "404-UserNotFound", 404)
 
