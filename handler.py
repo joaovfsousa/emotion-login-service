@@ -1,5 +1,6 @@
 import logging
 import json
+from src.Repositories.Session import SessionRepository
 from src.utils.config_log import config_log
 from src.HttpException import HttpException
 from src.Services.Auth import AuthService
@@ -19,13 +20,14 @@ def login(event, context):
             HttpException("Verifique o corpo da requisição", 400, "400-InvalidBody")
 
         userRepository = UserRepository()
-        authService = AuthService(userRepository)
+        sessionRepository = SessionRepository()
+        authService = AuthService(userRepository, sessionRepository)
 
         token = authService.authenticate(body["username"], body["password"])
 
-        return HttpHelper.makeResponse(200, {"token": token})
+        return HttpHelper.make_response(200, {"token": token})
     except HttpException as ex:
-        return HttpHelper.makeError(ex)
+        return HttpHelper.make_error(ex)
     except Exception as ex:
         logging.error(ex)
         return {"statusCode": 500, "body": json.dumps({"message": "Erro do servidor"})}

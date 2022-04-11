@@ -8,7 +8,7 @@ class User:
         self.name = name
         self.id = id
 
-    def checkPassword(self, password: str) -> bool:
+    def check_password(self, password: str) -> bool:
         passwordHash = HashHelper.hash_string(password)
         return passwordHash == self.password
 

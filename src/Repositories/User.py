@@ -6,11 +6,11 @@ import logging
 
 class UserRepository:
     def __init__(self):
-        self.dbHelper = MySQLHelper()
+        self.db_helper = MySQLHelper()
 
     def get_user_by_username(self, username: str) -> User:
         try:
-            cursor = self.dbHelper.getCursor()
+            cursor = self.db_helper.get_cursor()
             query = (
                 "SELECT id, name, username, password FROM users u where u.username = %s"
             )
